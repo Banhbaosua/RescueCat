@@ -1,0 +1,146 @@
+--------------------------------------
+V1.00 (15:31 PM / GMT +2)
+08.05.2024
+--------------------------------------
+Initial Release 
+
+
+--------------------------------------
+V1.01 (16:33 PM / GMT +2)
+09.05.2024
+--------------------------------------
+
+1) Added 9 B&W Icons: 
+
+- Color Blind 
+- Camera 
+- Subscribe 
+- Bell
+- Back & Forward 
+- Language (Globus)
+- Share 
+- Calendar 
+- Like 
+
+2) Split PSD Icons file into flat and colored versions
+3) Resize Clock B&W icon
+4) Redesigned Privacy B&W icon
+5) Added Color variation to Unlocked icon
+6) Updated Yellow Arrow Indicator: Added two more color variations (Green & Blue)
+7) Added 5 Gradient BGs
+
+--------------------------------------
+V1.02 (11:15 PM / GMT +2)
+11.05.2024
+--------------------------------------
+
+1) New 13 B&W Icons: 
+
+- Home 
+- Up Arrow
+- Down Arrow
+- Information
+- Goblet 
+- Key 
+- Star 
+- Search 
+- Crown
+- Question Mark
+- Plus (+)
+- Minus (-)
+- Graph
+
+2) Redesigned the Shopping cart icon
+
+3) Added 2 New Buttons shapes
+
+4) Updated Buttons visual consistency
+
+5) Added Buttons decorations (Hlight spots variations)
+
+--------------------------------------
+V1.03 (05:40 PM / GMT +2)
+14.05.2024 
+--------------------------------------
+
+1) Added 1 more Buttons shape 
+2) Updated 3 Color Icons - Shop, Lock & Goblet
+3) Added  12 Color Icons:
+
+- Social
+- Calendar
+- Gear (Settings)
+- Crown 
+- Key 
+- Shield
+- Clock
+- RV
+- Piggy Bank
+- Tressure Box - Open & Close
+- Coins - Various position variations
+
+4) Removed previous Key Icon
+
+--------------------------------------
+V1.04 (07:00 PM / GMT +2)
+16.05.2024 
+--------------------------------------
+
+1) Reorginized PSD Raw files;
+
+- Moved various icons from <Indicators.PSD> to <Icons_Color.PSD>
+- PNG Directory arranged accordingly
+
+2) Added 12 More color icons:
+
+- Map
+- Spin Button
+- Heart Variation (Broken)
+- Cards
+- 2 More Diamonds Variations
+- Cards
+- Subscribe (Mail)
+- Battle (Swords)
+- Search
+- Gold Medal
+- Bomb
+- Messages
+
+3) Redesigned Various icons (Colored):
+
+- Goblet (Achievement)
+- Heart
+- Crown 
+- Social
+
+4) Added Aim Indicator variations
+5) Added Stars Indicators variation
+6 Added Timer Progression Indicator variations
+7) Added 4 VFX Polygons
+
+--------------------------------------
+V1.05 (06:10 PM / GMT +2)
+25.05.2024 
+--------------------------------------
+
+1) Added Colors variation to the promotion indicator:
+
+- Yellow
+- Blue
+
+2) Added Diamond icon 3 colors variations:
+
+- Blue
+- Green
+- Purple 
+
+3) Redesigned third diamond shape variation
+
+4) Fix B&W Graphs icon spacing 
+5) Added Shining VFX variation
+6) Removed Confetti Visuals
+7) Redesigned B&W Awards Icon (Medal)
+
+
+
+
