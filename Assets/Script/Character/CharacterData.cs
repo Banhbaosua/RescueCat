@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Character Data", menuName ="Character/CharacterData")]
 public class CharacterData : ScriptableObject
 {
-    public float speed;
-    public float stamina;
-    public float incom;
-    public float money;
-    public float kickStartTime;
+    [SerializeField]private float speed;
+    [SerializeField]private float stamina;
+    [SerializeField]private float incom;
+    [SerializeField]private float money;
+    [SerializeField]private float kickStartTime;
     public event Action<float> OnMoneyChange = delegate { };
     public event Action<float> OnMaxStaminaChange = delegate { };
     public float GetKickStartTime()

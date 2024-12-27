@@ -160,7 +160,7 @@ public class SpeedSceneBehaviour : MonoBehaviour
 
     void RewardMoney()
     {
-        var reward = characterData.incom;
+        var reward = characterData.GetIncom();
         characterData.IncreaseMoney(reward);
     }
 

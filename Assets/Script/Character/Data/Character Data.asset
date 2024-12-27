@@ -12,7 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ac18e5ce8598a4e81124de5947a354, type: 3}
   m_Name: Character Data
   m_EditorClassIdentifier: 
-  speed: 1
-  stamina: 100
-  incom: 1
-  money: 10000

@@ -14,12 +14,15 @@ public class PlayerController : MonoBehaviour
     private InputManager inputManager;
     private float currentSpeed;
     private float maxSpeed;
+    private float kickStartSpeed;
     private float currentStamina;
     private float maxStamina;
-    private float kickStartTime;
     private Vector2 direction;
     private CancellationTokenSource moveCancellationTokenSource;
 
+    public event Action<float,float> OnMove = delegate { };
+    public event Action<float> OnMaxSpeedChange = delegate { };
+    public event Action<float,float> OnStaminaChange = delegate { };
     private bool isRunning;
     private void FixedUpdate()
     {
@@ -31,20 +34,20 @@ public class PlayerController : MonoBehaviour
     public void Move(Vector2 velocity)
     {
         var direction = new Vector3(velocity.x, 0, velocity.y).normalized;
-        currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed, 10f*Time.deltaTime);
+        currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed+kickStartSpeed, 10f*Time.deltaTime);
         characterController.SimpleMove(direction*currentSpeed);
 
         characterController.transform.forward = direction;
+        OnMove?.Invoke(currentSpeed, maxSpeed + kickStartSpeed);
     }
     public void Initialize(InputManager inputManager)
     {
         direction = Vector2.zero;
         this.inputManager = inputManager;
         currentSpeed = 0;
-        currentStamina = 0;
         maxSpeed = characterData.GetMaxSpeed();
         maxStamina = characterData.GetStamina();
-        kickStartTime = characterData.GetKickStartTime();
+        currentStamina = maxStamina;
 
         inputManager.OnTouchMove += StartMove;
         inputManager.OnTouchUp += StopMove;
@@ -81,9 +84,59 @@ public class PlayerController : MonoBehaviour
                     currentSpeed = 0f;
                     break;
                 }
+                OnMove?.Invoke(currentSpeed, maxSpeed);
                 await UniTask.Yield(cancellationToken: token);
             }
         }
         catch (Exception ex) { }
+    }
+
+    public void InCreaseKickStartSpeed()
+    {
+        kickStartSpeed += characterData.GetSpeed() / 10f;
+        OnMaxSpeedChange?.Invoke(maxSpeed + kickStartSpeed);
+    }
+
+    public void StopKickStart()
+    {
+        kickStartSpeed = 0f;
+        OnMaxSpeedChange?.Invoke(maxSpeed + kickStartSpeed);
+    }
+
+    public void DecreaseStamina()
+    {
+        Debug.Log(currentStamina);
+        if(currentStamina - characterData.GetSpeed() > 0)
+        {
+            currentStamina -= characterData.GetSpeed();
+        }
+        else
+        {
+            currentStamina = 0f;
+
+            RecoverStamina().Forget();
+        }
+        OnStaminaChange?.Invoke(currentStamina, maxStamina);
+    }
+
+    public async UniTaskVoid RecoverStamina()
+    {
+        while(currentStamina<maxStamina)
+        {
+            Debug.Log(currentStamina);
+            currentStamina = Mathf.Min(currentStamina+(maxStamina/10)*Time.deltaTime,maxStamina);
+            OnStaminaChange?.Invoke(currentStamina, maxStamina);
+            await UniTask.Yield();
+        }
+    }
+
+    public void EnableMove()
+    {
+        isRunning = true;
+    }
+
+    public void DisableMove()
+    {
+        isRunning = false;
     }
 }

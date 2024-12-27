@@ -9,7 +9,8 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] GridData gridData;
 
-    private StateMachine stateMachine;
+
+    [SerializeField] StateMachine stateMachine;
     private InputManager inputManager;
     private GridManager gridManager;
 
@@ -21,12 +22,10 @@ public class GameplayManager : MonoBehaviour
         inputManager = new InputManager();
         inputManager.Initialized();
         playerController.Initialize(inputManager);
-        
-        stateMachine = new StateMachine();
     }
 
     private void Start()
     {
-        stateMachine.Initalize();
+        stateMachine.Initalize(playerController);
     }
 }
