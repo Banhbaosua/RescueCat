@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class GridUnit
 {
-    public Vector2 position;
-    public bool isOccupied;
+    private Vector2 position;
+    private bool isOccupied;
+    public bool IsOccupied => isOccupied;
+    public Vector2 Pos => position;
+    public GridUnit(Vector2 position)
+    {
+        this.position = position;
+        this.isOccupied = false;
+    }
+
+    public void Occupied()
+    {
+        isOccupied = true;
+    }
+    public bool CheckOccupied()
+    {
+        return isOccupied;
+    }
 }

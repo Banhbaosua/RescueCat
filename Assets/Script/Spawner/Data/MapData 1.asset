@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48127d2ec6639a479fc91bb5fba17d8, type: 3}
+  m_Name: MapData 1
+  m_EditorClassIdentifier: 
+  propDatas:
+  - propSpawnPos: {x: -12.87059, y: 0, z: 277.1341}
+    propSpawnRot: {x: 0, y: 0.9731103, z: 0, w: 0.23033954}
+    propPrefab: {fileID: 9181701585240893179, guid: 350735ef3b951a54ba6ec49c663c667e, type: 3}
+  - propSpawnPos: {x: -26.056526, y: 0, z: 243.25331}
+    propSpawnRot: {x: 0, y: 0.83388245, z: 0, w: 0.5519421}
+    propPrefab: {fileID: 9181701585240893179, guid: 350735ef3b951a54ba6ec49c663c667e, type: 3}
+  - propSpawnPos: {x: 6.1194115, y: 0, z: 68.86494}
+    propSpawnRot: {x: 0, y: 0.7686902, z: 0, w: 0.63962126}
+    propPrefab: {fileID: 6452039197999972492, guid: 813df9801c30e63479934f054db68d12, type: 3}
+  - propSpawnPos: {x: -12.11478, y: 0, z: 357.7833}
+    propSpawnRot: {x: 0, y: 0.33518687, z: 0, w: 0.94215167}
+    propPrefab: {fileID: 8663673574762740106, guid: 3f83a5a9639ce0249ac0d7df9b8c40b9, type: 3}
+  - propSpawnPos: {x: -1.0032234, y: 0, z: 210.90787}
+    propSpawnRot: {x: 0, y: 0.57131654, z: 0, w: 0.8207298}
+    propPrefab: {fileID: 5700256861149209265, guid: 92b8e7ab754e06e458f48aee455cce98, type: 3}
+  numberOfCar: 4
+  used: 1

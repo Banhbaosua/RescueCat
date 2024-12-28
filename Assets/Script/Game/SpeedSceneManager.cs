@@ -6,6 +6,9 @@ public class SpeedSceneManager : MonoBehaviour
 {
     [SerializeField] SpeedSceneBehaviour speedSceneBehaviour;
     [SerializeField] UpgradeController upgradeController;
+    [SerializeField] MapCurrentData currentData;
+    [SerializeField] CharacterData characterData;
+    [SerializeField] LevelGenerator levelGenerator;
 
     private InputManager inputManager;
     private void Awake()
@@ -16,5 +19,6 @@ public class SpeedSceneManager : MonoBehaviour
         upgradeController.Initiallize();
 
         speedSceneBehaviour.Initialized();
+        levelGenerator.Generate();
     }
 }

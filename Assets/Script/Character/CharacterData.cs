@@ -10,6 +10,7 @@ public class CharacterData : ScriptableObject
     [SerializeField]private float incom;
     [SerializeField]private float money;
     [SerializeField]private float kickStartTime;
+    [SerializeField] private int currentDifficult;
     public event Action<float> OnMoneyChange = delegate { };
     public event Action<float> OnMaxStaminaChange = delegate { };
     public float GetKickStartTime()
@@ -42,6 +43,14 @@ public class CharacterData : ScriptableObject
     { 
         this.money -= cost;
         OnMoneyChange?.Invoke(this.money);
+    }
+    public void IncreaseDif()
+    {
+        currentDifficult++;
+    }
+    public int GetDifficultLevel()
+    {
+        return currentDifficult;
     }
 
     public void Initialize()

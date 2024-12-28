@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseSpawner
+public abstract class BaseSpawner : MonoBehaviour
 {
-    protected Vector2[][] grid;
+    [SerializeField] protected GameObject[] carPrefab;
+    [SerializeField] protected GameObject[] obstaclePrefab;
     protected MapGenerateData data;
-    public BaseSpawner(Vector2[][] grid, MapGenerateData data)
+
+    public void SetGenerateData( MapGenerateData data)
     {
-        this.grid = grid;
         this.data = data;
     }
 
-    public virtual void Spawn()
+    public virtual void Spawn(int numberOfCar, bool random = false)
     {
 
     }

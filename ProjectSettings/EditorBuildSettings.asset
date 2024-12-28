@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/RescueScene.unity
+    guid: 07227336fd0cb2442bd7f9849b5525c0
+  - enabled: 1
+    path: Assets/Scenes/UpgradeSpeed.unity
+    guid: 8beb520bae853244b8209cb39acc83f0
   m_configObjects: {}

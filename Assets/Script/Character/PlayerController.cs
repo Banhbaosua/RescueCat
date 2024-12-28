@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private float kickStartSpeed;
     private float currentStamina;
     private float maxStamina;
+    private bool isFatigued;
     private Vector2 direction;
     private CancellationTokenSource moveCancellationTokenSource;
 
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public event Action<float> OnMaxSpeedChange = delegate { };
     public event Action<float,float> OnStaminaChange = delegate { };
     private bool isRunning;
+
+    public float CurrentSpeed => currentSpeed;
     private void FixedUpdate()
     {
         if(isRunning)
@@ -36,8 +39,14 @@ public class PlayerController : MonoBehaviour
         var direction = new Vector3(velocity.x, 0, velocity.y).normalized;
         currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed+kickStartSpeed, 10f*Time.deltaTime);
         characterController.SimpleMove(direction*currentSpeed);
-
         characterController.transform.forward = direction;
+        OnMove?.Invoke(currentSpeed, maxSpeed + kickStartSpeed);
+    }
+
+    public void MoveForward()
+    {
+        currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed + kickStartSpeed, 10f * Time.deltaTime);
+        characterController.SimpleMove(Vector3.forward * currentSpeed);
         OnMove?.Invoke(currentSpeed, maxSpeed + kickStartSpeed);
     }
     public void Initialize(InputManager inputManager)
@@ -93,6 +102,7 @@ public class PlayerController : MonoBehaviour
 
     public void InCreaseKickStartSpeed()
     {
+        if (isFatigued) return;
         kickStartSpeed += characterData.GetSpeed() / 10f;
         OnMaxSpeedChange?.Invoke(maxSpeed + kickStartSpeed);
     }
@@ -105,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
     public void DecreaseStamina()
     {
-        Debug.Log(currentStamina);
+        if (isFatigued) return;
         if(currentStamina - characterData.GetSpeed() > 0)
         {
             currentStamina -= characterData.GetSpeed();
@@ -113,7 +123,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             currentStamina = 0f;
-
+            isFatigued = true ;
             RecoverStamina().Forget();
         }
         OnStaminaChange?.Invoke(currentStamina, maxStamina);
@@ -123,16 +133,20 @@ public class PlayerController : MonoBehaviour
     {
         while(currentStamina<maxStamina)
         {
-            Debug.Log(currentStamina);
             currentStamina = Mathf.Min(currentStamina+(maxStamina/10)*Time.deltaTime,maxStamina);
             OnStaminaChange?.Invoke(currentStamina, maxStamina);
             await UniTask.Yield();
+            if(currentStamina == maxStamina)
+                isFatigued= false;
         }
     }
 
-    public void EnableMove()
+    public void StartMarathon()
     {
-        isRunning = true;
+        isRunning = false;
+        moveCancellationTokenSource?.Cancel();
+        inputManager.OnTouchMove -= StartMove;
+        inputManager.OnTouchUp -= StopMove;
     }
 
     public void DisableMove()

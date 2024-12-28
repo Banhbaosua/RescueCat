@@ -11,7 +11,6 @@ public class SpeedoMeter : MonoBehaviour
 {
     [SerializeField] Slider slider;
     [SerializeField] Image fill;
-    [SerializeField] TextMeshProUGUI minSpeed;
     [SerializeField] TextMeshProUGUI maxSpeed;
     [SerializeField] RectTransform maxSpeedTextContainer;
     private Tween tweenTask;

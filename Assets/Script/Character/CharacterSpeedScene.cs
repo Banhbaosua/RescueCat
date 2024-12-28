@@ -6,8 +6,8 @@ public class CharacterSpeedScene : MonoBehaviour
 {
     [SerializeField] Animator animator;
 
-    public void SetFloat(string name, float value)
+    public void SetMove(float value,float maxValue)
     {
-        animator.SetFloat(name, value);
+        animator.SetFloat("Speed", value/maxValue);
     }
 }

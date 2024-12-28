@@ -15,6 +15,7 @@ public class SpeedSceneBehaviour : MonoBehaviour
     [SerializeField] CharacterSpeedScene character;
     [SerializeField] PropsLoop propsLoop;
     [SerializeField] Button speedArea;
+    [SerializeField] Button playButton;
 
     [Header("Behaviour Data")]
     [SerializeField] float maxPropsSpeed;
@@ -43,7 +44,7 @@ public class SpeedSceneBehaviour : MonoBehaviour
 
         staminaBar.SetText(currentStamina, maxStamina);
         speedArea.onClick.AddListener(() => OnSpeedingTouch?.Invoke());
-
+        playButton.onClick.AddListener(() => LoadSceneAsyncUtil.Instance.LoadAsync("RescueScene").Forget());
         characterData.OnMaxStaminaChange += UpdateStamina;
         OnSpeedingTouch += IncreaseSpeed;
         OnSpeedingTouch += DecreaseStamina;
@@ -53,6 +54,7 @@ public class SpeedSceneBehaviour : MonoBehaviour
         OnStaminaChange += staminaBar.UpdateFill;
 
         OnSpeedChange += meter.UpdateFill;
+        OnSpeedChange += character.SetMove;
     }
 
     void IncreaseSpeed()
@@ -70,8 +72,6 @@ public class SpeedSceneBehaviour : MonoBehaviour
         speedCancellationTokenSource = new CancellationTokenSource();
 
         DecreaseSpeed(0.5f,speedCancellationTokenSource.Token).Forget();
-         
-        //character.SetFloat("Speed", currentSpeed / maxSpeed);
     }
     void DecreaseStamina()
     {
@@ -122,6 +122,7 @@ public class SpeedSceneBehaviour : MonoBehaviour
                     if (isFatigued)
                     {
                         isFatigued = false;
+                        speedArea.interactable = true;
                         staminaBar.ChangeFillSpriteDisabled(false);
                     }
                     break;
@@ -140,7 +141,6 @@ public class SpeedSceneBehaviour : MonoBehaviour
             while (true)
             {
                 token.ThrowIfCancellationRequested();
-                Debug.Log("decrease speed");
                 currentSpeed -= speedDecAmount * Time.deltaTime;
                 currentPropsSpeed = (maxPropsSpeed* currentSpeed) / maxSpeed;
                 propsLoop.SetSpeed(currentPropsSpeed);

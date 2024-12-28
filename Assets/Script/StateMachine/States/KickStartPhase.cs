@@ -14,7 +14,10 @@ public class KickStartPhase : BaseState
 
     public override async void OnStateEnter()
     {
-        await StartingPhase();
+        await UniTask.Delay(1000);
+        machine.mainCamera.enabled = false;
+        await machine.CameraTransition(machine.mainCamera);
+        machine.WaveBehaviour.Move();
         AsignTouchAction();
         KickStartCountDown().Forget();
         machine.PlayerController.DisableMove();
@@ -30,14 +33,6 @@ public class KickStartPhase : BaseState
     {
         machine.PlayerController.DisableMove();
     }
-    async UniTask StartingPhase()
-    {
-        machine.mainCamera.enabled = true;
-        await UniTask.WaitUntil(() => machine.cameraBrain.IsBlending);
-        await UniTask.WaitUntil(() => !machine.cameraBrain.IsBlending);
-        Debug.Log("done");
-    }
-
 
     async UniTaskVoid KickStartCountDown()
     {
