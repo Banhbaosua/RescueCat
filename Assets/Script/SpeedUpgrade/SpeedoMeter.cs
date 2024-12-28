@@ -18,12 +18,13 @@ public class SpeedoMeter : MonoBehaviour
     public void UpdateFill(float value, float maxValue)
     {
         slider.value = value/maxValue;
-        maxSpeed.text = maxValue.ToString();
+        maxSpeed.text = maxValue.ToString("F1");
+        Debug.Log(maxValue);
         fill.color = Color.Lerp(Color.green, Color.red, value/maxValue);
     }
     public async void UpDateMaxSpeed(float value)
     {
-        maxSpeed.text = value.ToString();
+        maxSpeed.text = value.ToString("F1");
         await PunchScaleTask();
     }
 

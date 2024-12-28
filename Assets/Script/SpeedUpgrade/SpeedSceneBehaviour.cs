@@ -38,7 +38,7 @@ public class SpeedSceneBehaviour : MonoBehaviour
     public void Initialized()
     {
         characterData.Initialize();
-        maxSpeed = characterData.GetSpeed() * 10f;
+        maxSpeed = 10+characterData.GetSpeed() * 10f;
         maxStamina = characterData.GetStamina();
         currentStamina = maxStamina;
 

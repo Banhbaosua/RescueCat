@@ -129,6 +129,12 @@ public class PlayerController : MonoBehaviour
         OnStaminaChange?.Invoke(currentStamina, maxStamina);
     }
 
+    public void DecreaseMaxSpeed(float value)
+    {
+        maxSpeed -= value;
+        OnMaxSpeedChange?.Invoke(maxSpeed);
+    }
+
     public async UniTaskVoid RecoverStamina()
     {
         while(currentStamina<maxStamina)

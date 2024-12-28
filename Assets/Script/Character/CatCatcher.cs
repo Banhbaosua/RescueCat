@@ -115,6 +115,7 @@ public class CatCatcher : MonoBehaviour
             {
                 catchBar.gameObject.SetActive(false);
                 cats.Add(cat);
+                playerController.DecreaseMaxSpeed(0.7f);
                 CheckCatsInProximity();
                 return;
             }

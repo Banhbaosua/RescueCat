@@ -62,16 +62,18 @@ public class CatController : MonoBehaviour
 
     public async UniTaskVoid FollowPlayer(Transform player,PlayerController playerCtl)
     {
+        cancellationTokenSource?.Cancel();
+        cancellationTokenSource = new CancellationTokenSource();
         isCatched = true;
         float speed = 0f;
         while(true)
         {
+            await UniTask.Yield(cancellationToken: cancellationTokenSource.Token);
             agent.SetDestination(player.transform.position);
             if(playerCtl.CurrentSpeed > speed)
                 speed = playerCtl.CurrentSpeed;
             agent.speed = speed;
             Debug.Log(agent.speed);
-            await UniTask.Yield();
         }
     }
 

@@ -20,7 +20,6 @@ public class LevelGenerator : MonoBehaviour
         difficultLevel = characterData.GetDifficultLevel();
         mapIndex = 0;
         gridManager = new GridManager(gridData);
-        Debug.Log(mapDatas.Length);
         for (int i = 0; i < mapDatas.Length; i++)
         {
             GenerateMapDataTask().Forget();
@@ -86,7 +85,6 @@ public class LevelGenerator : MonoBehaviour
         SaveMapGenerateData(propDatas,numberOfCars);
         difficultLevel++;
         mapIndex++;
-        Debug.Log(mapIndex);
     }
 
     async UniTask<(GameObject,GameObject)> GeneratePropTask(GridUnit[][] grid,bool isCar)
@@ -101,7 +99,6 @@ public class LevelGenerator : MonoBehaviour
             var prop = propAndPref.Item1;
             prop.SetActive(false);
             var pref = propAndPref.Item2;
-            prop.SetActive(true);
             var collider = prop.GetComponent<Collider>();
             var minBound = collider.bounds.min;
             var maxBound = collider.bounds.max;
